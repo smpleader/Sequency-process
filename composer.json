@@ -1,0 +1,27 @@
+{
+    "name": "smpleader/sequency-process",
+    "description": "Process a bulk by a sequence",
+    "keywords": ["bulk process", "php", "cli", "spt"],
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/smpleader/Sequency-process/wiki",
+    "support": {
+        "issues": "https://github.com/smpleader/Sequency-process/issues",
+        "source": "https://github.com/smpleader/Sequency-process"
+    },
+    "authors": [
+        {
+            "name": "Pham Minh",
+            "email": "hello@smpleader.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SequencyProcess\\": "src/"
+        }
+    }, 
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
