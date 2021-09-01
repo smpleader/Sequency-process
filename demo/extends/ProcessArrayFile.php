@@ -68,9 +68,11 @@ class ProcessArrayFile extends ProcessArray
 
 	public function finished()
 	{
-		$res = $this->result->output();
-
-		file_put_contents($this->statePath, json_encode($res));
+		if ( 'cli' == php_sapi_name())
+		{
+			$res = $this->result->output();
+			file_put_contents($this->statePath, json_encode($res));
+		}
 	}
 
 }
