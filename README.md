@@ -7,7 +7,7 @@ Process a bulk by a sequence
 - Git clone repo https://github.com/smpleader/Sequency-process.git
 - Generate auto load: composer dump-autoload
 
-## Demo
+## See Demo/ How does it work
 
-- Web browser: {demo}://demo/gui/index.html
+- Web browser: {demo.domain}://demo/gui/index.html
 - CLI: php /www/html/demo/cli/index.php
