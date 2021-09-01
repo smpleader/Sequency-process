@@ -10,7 +10,7 @@
 
 use SequencyProcess\ProcessArray;
 
-class ProcessArrayFile extends ProcessArray
+class ProcessFile extends ProcessArray
 {
 	protected $statePath;
 
