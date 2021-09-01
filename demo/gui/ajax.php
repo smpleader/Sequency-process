@@ -3,7 +3,7 @@
 require_once '../include.php'; 
 
 // Declare
-$process = new ProcessArrayFile();
+$process = new ProcessFile();
 $process->setArray( demo::sampleArray() );
 
 $sequence = new SequencyProcess\Sequence($process);

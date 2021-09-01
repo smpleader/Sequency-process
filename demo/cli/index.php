@@ -3,7 +3,7 @@
 require_once '../include.php'; 
 
 // Declare
-$process = new ProcessArrayFile();
+$process = new ProcessFile();
 $process->setStatePath( PATH.'cli/state.log' );
 $process->setArray( demo::sampleArray() );
 
