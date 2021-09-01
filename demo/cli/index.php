@@ -1,4 +1,4 @@
-<?php if (php_sapi_name() != "cli") die('Only CLI');
+<?php if ( 'cli' != php_sapi_name() ) die('Only CLI');
 
 require_once '../include.php'; 
 

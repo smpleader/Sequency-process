@@ -1,6 +1,6 @@
 <?php
 
-require_once 'include.php'; 
+require_once '../include.php'; 
 
 // Declare
 $process = new ProcessArrayFile();
@@ -15,7 +15,7 @@ $output = $sequence->run($start, $limit);
 
 // Output json result
 http_response_code(200);
-header('Content-Type: application/json');
+header('Content-Type: application/json;charset=utf-8');
 echo json_encode($output);
 
 die;

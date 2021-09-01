@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"   crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"   crossorigin="anonymous"></script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</head>
+<body>    
+    <form action="" method="post" name="adminForm" id="adminForm">
+        
+        <div id="j-main-container" class="span10">
+            <div class="progress progress-striped active">
+                <div class="bar bar-success progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p class="msg"></p>
+
+            <input type="hidden" name="task" value="" />  
+        </div>
+    </form>
+
+<script> 
+var request = async function(dataGET)
+{
+    jQuery.ajax({
+        method: "GET",
+        url: "ajax.php",
+        data: dataGET
+    })
+    .done( response => afterRequest(response) )
+    .fail( ( xhr, textStatus, errorThrown) => {
+        jQuery(".msg").html( xhr.status + " error: " + xhr.responseText );
+    });
+}
+
+var afterRequest = async function(res)
+{
+    //console.log("Requested result: ", res);
+    if( typeof res.percentage == 'undefined')
+    {
+        updateProgress(100);
+        jQuery(".msg").html('');
+        jQuery('<div class="alert alert-primary" role="alert">' + res.msg + '</div>').insertBefore(".progress");
+        await sleep( 1500 );
+        document.location.href = "done.html";
+    }
+    else
+    {
+        updateProgress(res.percentage);
+        jQuery(".msg").html(res.msg);
+        if( res.data !== false)
+        {
+            await sleep( 1500 );
+            request({start: res.start, level: res.level});
+        }
+    }
+}
+
+var sleep = function (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+var updateProgress = function(percentage)
+{
+    jQuery(".progress-bar").css("width", percentage+"%").attr('aria-valuenow', percentage);
+}
+
+jQuery(document).ready(function(){ 
+    request({start: 0});
+});
+</script>
+</body>
+</html>
