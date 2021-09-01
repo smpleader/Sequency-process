@@ -1,10 +1,10 @@
 <?php if (php_sapi_name() != "cli") die('Only CLI');
 
-require_once 'include.php'; 
+require_once '../include.php'; 
 
 // Declare
 $process = new ProcessArrayFile();
-$process->setStatePath('log.txt');
+$process->setStatePath( PATH.'cli/state.log' );
 $process->setArray( demo::sampleArray() );
 
 $sequence = new SequencyProcess\Sequence($process);

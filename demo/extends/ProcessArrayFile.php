@@ -17,11 +17,19 @@ class ProcessArrayFile extends ProcessArray
 	public function setStatePath(string $path)
 	{
 		$this->statePath = $path;
+		if(!file_exists($this->statePath))
+		{
+			$try = fopen($this->statePath, 'a+');
+			if(false === $try)
+			{
+				$this->setStatePath( PATH. 'state.log' );
+			}
+		}
 	}
 
     public function loadState()
 	{
-		$try = file_get_contents($path);
+		$try = file_get_contents($this->statePath);
 
 		if(false === $try)
 		{
