@@ -12,9 +12,9 @@ namespace SequencyProcess;
 
 class ProcessResult
 {
+	public $start;  
+	public $limit;  
 	protected $msg; 
-	protected $start;  
-	protected $limit;  
 	protected $length;  
 	protected $output;  
 
@@ -48,7 +48,7 @@ class ProcessResult
 			'msg' => $msg,
 			'data'=> $data,
 			'level'=> $level,
-			'next'=> $next,
+			'start'=> $next,
 			'percentage'=> $percentage
 		];
 	}

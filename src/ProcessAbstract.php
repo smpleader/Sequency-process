@@ -18,7 +18,7 @@ abstract class ProcessAbstract
     abstract function getTotal();
 
 	// process each step
-	abstract function execute($start, $limit);
+	abstract function execute();
 
 	// start new level
 	abstract function next();

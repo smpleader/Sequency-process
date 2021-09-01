@@ -24,16 +24,14 @@ class ProcessArray extends ProcessAbstract
 
     public function getTotal()
 	{
-		return is_array($this->arr) ? 0 : sizeof($this->arr);
+		return is_array($this->arr) ? count($this->arr) : 0;
 	}
 
-	public function execute($start, $limit)
+	public function execute()
 	{
-		$this->result = new ProcessResult($start, $limit, $this->getTotal());
-
 		try{
 
-			$current = array_slice($this->arr, $start, $limit);
+			$current = array_slice($this->arr, $this->result->start, $this->result->limit);
 
 			foreach($current as $value)
 			{
@@ -72,6 +70,11 @@ class ProcessArray extends ProcessAbstract
 		$this->result->next($this->level++);
 		$this->finished();
 		return $this->result->output();
+	}
+
+	public function prepare($start, $limit)
+	{
+		$this->result = new ProcessResult($start, $limit, $this->getTotal());
 	}
 
 	protected function process($data){}
