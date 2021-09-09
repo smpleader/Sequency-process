@@ -41,7 +41,9 @@ build/Release
 node_modules/
 jspm_packages/
 package.json
+package-lock.json
 webpack.config.js
+js_modules/
 
 # TypeScript v1 declaration files
 typings/
@@ -108,3 +110,4 @@ dist
 
 # Composer packages
 vendor/
+.babelrc
