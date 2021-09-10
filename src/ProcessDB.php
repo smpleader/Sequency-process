@@ -74,8 +74,9 @@ class ProcessDB extends ProcessAbstract
 		return $this->result->output();
 	}
 
-	public function prepare($start, $limit)
+	public function prepare($start, $limit, $level)
 	{
+		$this->level = $level;
 		$this->result = new ProcessResult($start, $limit, $this->getTotal());
 	}
 

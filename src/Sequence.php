@@ -21,9 +21,9 @@ class Sequence
         $this->maxLevel = $maxLevel;
     }
 
-    public function run($start, $limit = 20)
+    public function run($start, $limit = 20, $level = 0)
     {
-        $this->process->prepare($start, $limit);
+        $this->process->prepare($start, $limit, $level);
         
 		$length = $this->process->getTotal();
 

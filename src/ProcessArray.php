@@ -15,7 +15,7 @@ class ProcessArray extends ProcessAbstract
 	protected $arr;
 	protected $result;
 	protected $data;
-	protected $level = 0;
+	protected $level;
 
     public function setArray(array $input)
 	{
@@ -72,8 +72,9 @@ class ProcessArray extends ProcessAbstract
 		return $this->result->output();
 	}
 
-	public function prepare($start, $limit)
+	public function prepare($start, $limit, $level = 0)
 	{
+		$this->level = $level;
 		$this->result = new ProcessResult($start, $limit, $this->getTotal());
 	}
 
