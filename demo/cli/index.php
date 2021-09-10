@@ -4,7 +4,7 @@ require_once '../include.php';
 
 // Declare
 $process = new ProcessFile();
-$process->setStatePath( PATH.'cli/state.log' );
+$process->setStatePath( DEMO_PATH.'cli/state.log' );
 $process->setArray( demo::sampleArray() );
 
 $sequence = new SequencyProcess\Sequence($process);

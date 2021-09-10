@@ -22,7 +22,7 @@ class ProcessFile extends ProcessArray
 			$try = fopen($this->statePath, 'a+');
 			if(false === $try)
 			{
-				$this->setStatePath( PATH. 'state.log' );
+				$this->setStatePath( DEMO_PATH. 'state.log' );
 			}
 		}
 	}
