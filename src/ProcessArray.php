@@ -29,21 +29,7 @@ class ProcessArray extends ProcessAbstract
 
 	public function execute()
 	{
-		try{
-
-			$current = array_slice($this->arr, $this->result->start, $this->result->limit);
-
-			foreach($current as $value)
-			{
-				$this->process($value);
-			}
-
-		} catch (Exception $e) {
-
-			$this->result->failed( $e->getMessage() );
-			$this->finished();
-			return $this->result->output();
-		}
+		$this->try_execute();
 
 		if($this->error)
 		{
@@ -78,6 +64,22 @@ class ProcessArray extends ProcessAbstract
 		$this->result = new ProcessResult($start, $limit, $this->getTotal());
 	}
 
-	protected function process($data){}
+	protected function try_execute()
+	{
+		try{
+
+			$current = array_slice($this->arr, $this->result->start, $this->result->limit);
+
+			foreach($current as $value)
+			{
+				// do sth with $value
+			}
+
+		} catch (Exception $e) {
+			
+			$this->error = $e->getMessage() ;
+		}
+	}
+
 	protected function finished(){}
 }
