@@ -16,13 +16,23 @@
     </form>
 
 <script>
-jQuery(document).ready(function(){ 
+jQuery(document).ready(function(){
     SequenceProcess
         .config(
             jQuery,
-            "sq_msg",
-            "ajax.php",
-            "done.html"
+            {
+                container_id:  "sq_msg"
+            },
+            {
+                method: 'GET',
+                url: "ajax.php",
+                data: {hi:"Xx"}
+            },
+            (sth) => {
+                console.log("this is from callback", sth);
+                //console.log(this)
+                return true;
+            }
         )
         .request(
             {start: 0}
