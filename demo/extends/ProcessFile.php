@@ -61,7 +61,7 @@ class ProcessFile extends ProcessArray
 		$this->setArray($arr);
 	}
 
-	protected function try_execute($data)
+	protected function try_execute()
 	{
 		$this->data = $data;
 	}

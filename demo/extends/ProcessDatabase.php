@@ -18,7 +18,7 @@ class ProcessDatabase extends ProcessDB
 		return null;
 	}
 
-	protected function try_execute($data)
+	protected function try_execute()
 	{
 		$this->data = $data;
 	}
