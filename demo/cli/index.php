@@ -13,7 +13,8 @@ $sequence = new SequencyProcess\Sequence($process);
 $state = $process->loadState();
 $start = isset($state['start']) ? (int)$state['start'] : 0;
 $limit = 5; // should have this from a configuration
-$output = $sequence->run($start, $limit);
+$level = isset($state['level']) ? (int)$state['level'] : 0;
+$output = $sequence->run($start, $limit, $level);
 
 // Print result to terminal
 foreach($output as $key=>$value)

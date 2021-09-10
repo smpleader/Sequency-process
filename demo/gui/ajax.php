@@ -11,7 +11,8 @@ $sequence = new SequencyProcess\Sequence($process);
 // Process each segment
 $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 $limit = 5; // should have this from a configuration
-$output = $sequence->run($start, $limit);
+$level = isset($_GET['level']) ? (int)$_GET['level'] : 0;
+$output = $sequence->run($start, $limit, $level); 
 
 // Output json result
 http_response_code(200);
