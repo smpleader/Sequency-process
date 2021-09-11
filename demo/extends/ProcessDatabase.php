@@ -8,19 +8,50 @@
  * 
  */
 
-use SequencyProcess\ProcessDB;
+use SequencyProcess\ProcessArray;
 
-class ProcessDatabase extends ProcessDB
+class ProcessDatabase extends ProcessArray
 {
-    public function loadState()
+	protected $db;
+	protected $result;
+	protected $data; 
+
+    public function setDB(object $db)
 	{
-		// TODO: query state from DB 
-		return null;
+		$this->db = $db;
 	}
 
+    public function getTotal()
+	{
+		// TODO
+		// return $this->db->query( SELECT COUNT(id) FROM #__tbl_records )
+		return 0;
+	}
+ 
 	protected function try_execute()
 	{
-		$this->data = $data;
+		try{
+			// TODO
+			// SELECT * FROM #__tbl_records LIMIT  $this->result->start, $this->result->limit
+			$current = [];
+
+			foreach($current as $value)
+			{
+				// TODO
+				// process $value
+			}
+
+		} catch (Exception $e) {
+
+			$this->error = $e->getMessage() ;
+		}
+	}
+
+    public function loadState()
+	{
+		// TODO
+		// $this->db->query( SELECT status FROM #__tbl_states )
+		return null;
 	}
 
 	public function finished()
@@ -28,8 +59,8 @@ class ProcessDatabase extends ProcessDB
 		if ( 'cli' == php_sapi_name())
 		{
 			$res = $this->result->output();
-			// TODO: query to update state to DB
-			// json_encode($res);
+			// TODO
+			// $this->db->query( UPDATE #__tbl_states SET status = json_encode($res) )
 		}
 	}
 }

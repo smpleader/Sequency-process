@@ -1,6 +1,6 @@
 <?php
 /**
- * Sequency Process - Demo get data from a file
+ * Sequency Process - Class Process by an array use state from a file
  * 
  * @project: https://github.com/smpleader/Sequency-process
  * @author: Pham Minh - smpleader
@@ -8,7 +8,7 @@
  * 
  */
 
-use SequencyProcess\ProcessArray;
+namespace SequencyProcess;
 
 class ProcessFile extends ProcessArray
 {
@@ -63,7 +63,19 @@ class ProcessFile extends ProcessArray
 
 	protected function try_execute()
 	{
-		$this->data = $data;
+		try{
+
+			$current = array_slice($this->arr, $this->result->start, $this->result->limit);
+
+			foreach($current as $value)
+			{
+				// do sth with $value
+			}
+
+		} catch (Exception $e) {
+			
+			$this->error = $e->getMessage() ;
+		}
 	}
 
 	public function finished()
