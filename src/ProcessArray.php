@@ -58,9 +58,8 @@ class ProcessArray extends ProcessAbstract
 		return $this->result->output();
 	}
 
-	public function prepare($start, $limit, $level = 0)
+	public function prepare($start, $limit)
 	{
-		$this->level = $level;
 		$this->result = new ProcessResult($start, $limit, $this->getTotal());
 	}
 

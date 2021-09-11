@@ -3,7 +3,8 @@
 require_once '../include.php'; 
 
 // Declare
-$process = new ProcessFile();
+$level = isset($state['level']) ? (int)$state['level'] : 0;
+$process = new ProcessFile($level);
 $process->setStatePath( DEMO_PATH.'cli/state.log' );
 $process->setArray( demo::sampleArray() );
 
@@ -13,8 +14,7 @@ $sequence = new SequencyProcess\Sequence($process);
 $state = $process->loadState();
 $start = isset($state['start']) ? (int)$state['start'] : 0;
 $limit = 5; // should have this from a configuration
-$level = isset($state['level']) ? (int)$state['level'] : 0;
-$output = $sequence->run($start, $limit, $level);
+$output = $sequence->run($start, $limit);
 
 // Print result to terminal
 foreach($output as $key=>$value)

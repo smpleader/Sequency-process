@@ -21,15 +21,15 @@ class Sequence
         $this->maxLevel = $maxLevel;
     }
 
-    public function run($start, $limit = 20, $level = 0)
+    public function run($start, $limit = 20)
     {
-        $this->process->prepare($start, $limit, $level);
+        $this->process->prepare($start, $limit);
         
 		$length = $this->process->getTotal();
 
 		if($start >= $length)
 		{
-            if( empty($this->maxLevel) || $this->maxLevel == $this->process->level )
+            if( empty($this->maxLevel) || $this->maxLevel == $this->process->getLevel() )
             {
                 return $this->process->final();
             }

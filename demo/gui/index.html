@@ -22,15 +22,15 @@ jQuery(document).ready(function(){
             jQuery,
             {
                 container_id:  "sq_msg"
+                //, done_url: "done.html"
             },
             {
                 method: 'GET',
                 url: "ajax.php",
-                data: {hi:"Xx"}
+                data: {extra_data:"Bla bla bla"}
             },
             (sth) => {
-                console.log("this is from callback", sth);
-                //console.log(this)
+                console.log("callback:", sth);
                 return true;
             }
         )

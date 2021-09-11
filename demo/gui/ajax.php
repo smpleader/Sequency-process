@@ -3,7 +3,8 @@
 require_once '../include.php'; 
 
 // Declare
-$process = new ProcessFile();
+$level = isset($_GET['level']) ? (int)$_GET['level'] : 0;
+$process = new ProcessFile($level);
 $process->setArray( demo::sampleArray() );
 
 $sequence = new SequencyProcess\Sequence($process);
@@ -11,8 +12,7 @@ $sequence = new SequencyProcess\Sequence($process);
 // Process each segment
 $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 $limit = 5; // should have this from a configuration
-$level = isset($_GET['level']) ? (int)$_GET['level'] : 0;
-$output = $sequence->run($start, $limit, $level); 
+$output = $sequence->run($start, $limit); 
 
 // Output json result
 http_response_code(200);

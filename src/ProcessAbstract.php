@@ -15,10 +15,20 @@ abstract class ProcessAbstract
 	protected $level;
 	protected $error;
 
+	function __construct($level = 0)
+	{
+		$this->level = $level;
+	}
+
+    function getLevel()
+	{
+		return $this->level;
+	}
+
     abstract function getTotal();
 
 	// process each step
-	abstract function prepare($start, $limit, $level);
+	abstract function prepare($start, $limit);
 
 	// process each step
 	abstract function execute();
