@@ -54,7 +54,8 @@ class ProcessDB extends ProcessAbstract
 
 	public function next()
 	{
-		$this->result->next($this->level++);
+		$this->level++;
+		$this->result->next($this->level);
 		$this->finished();
 		return $this->result->output();
 	}
