@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="sequenceProcess.css" >
+    <script src="jquery-3.1.1.min.js" ></script> 
+    <script src="sequenceProcess.js" ></script>
+</head>
+<body>    
+    <form action="" method="post" name="adminForm" id="adminForm">
+        
+        <div id="j-main-container" class="span10">
+            <div id="sq_msg"></div>
+            <input type="hidden" name="task" value="" />  
+        </div>
+    </form>
+
+<script>
+jQuery(document).ready(function(){
+    SequenceProcess
+        .config(
+            jQuery,
+            {
+                container_id:  "sq_msg"
+                //, done_url: "done.html"
+            },
+            {
+                method: 'GET',
+                url: "ajax2.php",
+                data: {extra_data:"Bla bla bla"}
+            },
+            (sth) => {
+                console.log("callback:", sth);
+                return true;
+            }
+        )
+        .request(
+            {start: 0, limit:20}
+        );
+});
+</script>
+</body>
+</html>
