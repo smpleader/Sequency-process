@@ -25,6 +25,23 @@ class ProcessResult
 		$this->length = $length;
 	}
 
+	public function setMsg($key, $value='')
+	{
+		if( is_string($key) )
+		{
+			$this->msg[$key] = $value;
+		}
+		elseif( is_array($key))
+		{
+			$this->msg = $key;
+		}
+	}
+
+	public function getMsg($key, $default='')
+	{
+		return isset($this->msg[$key]) ? $this->msg[$key] : $default;
+	}
+
 	public function failed($msg)
 	{
 		$this->output = [
@@ -41,7 +58,7 @@ class ProcessResult
 
 		if( empty($msg) )
 		{
-			$msg = $percentage.'% done';
+			$msg = $this->getMsg('success', $percentage.'% done');
 		}
 
 		$this->output = [
@@ -53,8 +70,13 @@ class ProcessResult
 		];
 	}
 
-	public function final($msg = 'DONE')
+	public function final($msg = '')
 	{
+		if( empty($msg) )
+		{
+			$msg = $this->getMsg('final', 'DONE');
+		}
+
 		$this->output = [
 			'msg' => $msg,
 			'data' => true
@@ -63,6 +85,11 @@ class ProcessResult
 
 	public function next($level, $msg='')
 	{
+		if( empty($msg) )
+		{
+			$msg = $this->getMsg('next', 'Next step '.$level);
+		}
+		
 		$this->output = [
 			'msg' => $msg,
 			'level' => $level,
