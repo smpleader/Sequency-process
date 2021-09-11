@@ -11,7 +11,7 @@ $sequence = new SequencyProcess\Sequence($process);
 
 // Process each segment
 $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
-$limit = 5; // should have this from a configuration
+$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 5;
 $output = $sequence->run($start, $limit); 
 
 // Output json result

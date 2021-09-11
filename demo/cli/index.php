@@ -13,7 +13,7 @@ $sequence = new SequencyProcess\Sequence($process);
 // Process each segment
 $state = $process->loadState();
 $start = isset($state['start']) ? (int)$state['start'] : 0;
-$limit = 5; // should have this from a configuration
+$limit = isset($state['start']) ? (int)$state['start'] : 5; 
 $output = $sequence->run($start, $limit);
 
 // Print result to terminal
