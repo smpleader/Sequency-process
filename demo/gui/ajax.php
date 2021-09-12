@@ -4,7 +4,7 @@ require_once '../include.php';
 
 // Declare
 $level = isset($_GET['level']) ? (int)$_GET['level'] : 0;
-$process = new ProcessFile($level);
+$process = new SequencyProcess\ProcessFile($level);
 $process->setArray( demo::sampleArray() );
 
 $sequence = new SequencyProcess\Sequence($process);

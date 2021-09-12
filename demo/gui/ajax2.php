@@ -3,8 +3,8 @@
 require_once '../include.php'; 
 
 // Declare
-$level = isset($_GET['level']) ? (int)$_GET['level'] : 1;
-$process = new ProcessFile2($level);
+$level = isset($_GET['level']) ? (int)$_GET['level'] : 0;
+$process = new ProcessFileSample($level);
 $process->setArray( demo::sampleArray() );
 
 $sequence = new SequencyProcess\Sequence($process, 2);
