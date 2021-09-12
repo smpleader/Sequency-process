@@ -4,7 +4,7 @@ require_once '../include.php';
 
 // Declare
 $level = isset($state['level']) ? (int)$state['level'] : 0;
-$process = new ProcessFile($level);
+$process = new SequencyProcess\ProcessFileCli($level);
 $process->setStatePath( DEMO_PATH.'cli/state.log' );
 $process->setArray( demo::sampleArray() );
 
