@@ -17,12 +17,13 @@
 
 <script>
 jQuery(document).ready(function(){
-    SequenceProcess
+    let sp =SequenceProcess
         .config(
             jQuery,
             {
                 container_id:  "sq_msg"
                 //, done_url: "done.html"
+                ,delayTime: 2000
             },
             {
                 method: 'GET',
@@ -33,10 +34,9 @@ jQuery(document).ready(function(){
                 console.log("callback:", sth);
                 return true;
             }
-        )
-        .request(
-            {start: 0, limit:20}
         );
+    sp.showMsg('Start step 1');
+    sp.request({start: 0, limit:15});
 });
 </script>
 </body>

@@ -12,7 +12,7 @@ use SequencyProcess\ProcessFile;
 
 class ProcessFileSample extends ProcessFile
 {
-	public function levelToName($ind = null)
+	public function getLevelName($ind = null)
 	{
 		$levels = [
 			'step1',
@@ -39,38 +39,39 @@ class ProcessFileSample extends ProcessFile
 			$this->error = $e->getMessage() ;
 		}
 
-		$current = $this->levelToName($this->level);
-		switch($current)
+		if(empty($this->error))
 		{
-			case 'step1':
-				$this->result->setMsg('Step 1 processed '. $this->result->getPercentage().'%' );
-				break;
-			case 'step2':
-				$this->result->setMsg('Step 2 processed '. $this->result->getPercentage().'%');
-				break;
-			case 'step3':
-				$this->result->setMsg('Step 3 processed '. $this->result->getPercentage().'%');
-				break;
+			$current = $this->getLevelName($this->level);
+			switch($current)
+			{
+				case 'step1':
+					$this->result->setMsg('Step 1 processed '. $this->result->getPercentage().'%' );
+					break;
+				case 'step2':
+					$this->result->setMsg('Step 2 processed '. $this->result->getPercentage().'%');
+					break;
+				case 'step3':
+					$this->result->setMsg('Step 3 processed '. $this->result->getPercentage().'%');
+					break;
+			}
 		}
 	}
 
 	public function final()
 	{
-		$current = $this->levelToName($this->level);
-		$this->result->setMsg( 'We finished '.$current);
-
-		$this->result->final();
+		$this->result->final('We finished the work!');
 		$this->finished();
 		return $this->result->output();
 	}
 
 	public function next()
 	{
-		$current = $this->levelToName($this->level);
+		$current = $this->getLevelName($this->level);
 		switch($current)
 		{
 			case 'step1':
 				$this->result->setMsg('Start next step 2');
+				$this->result->limit = 25;
 				break;
 			case 'step2':
 				$this->result->setMsg('Start next step 3');
