@@ -10,7 +10,7 @@
 
 namespace SequencyProcess;
 
-class ProcessFile extends ProcessFileCli
+class ProcessFileCli extends ProcessFile
 {
 	protected $statePath;
 
@@ -43,7 +43,7 @@ class ProcessFile extends ProcessFileCli
 
 		return $state;
 	}
-	
+
 	public function finished()
 	{
 		if ( 'cli' == php_sapi_name())
