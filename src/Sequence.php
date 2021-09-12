@@ -31,12 +31,18 @@ class Sequence
 		{
             if( empty($this->maxLevel) || $this->maxLevel == $this->process->getLevel() )
             {
-                return $this->process->final();
+                $this->process->final();
             }
-            
-            return $this->process->next();
+            else
+            {
+                $this->process->next();
+            }
 		}
+        else
+        {
+            $this->process->execute();
+        }
 
-		return $this->process->execute();
+		return $this->process->result();
     }
 }

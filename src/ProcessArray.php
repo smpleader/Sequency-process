@@ -39,29 +39,28 @@ class ProcessArray extends ProcessAbstract
 		{
 			$this->result->success($this->data, $this->level);
 		}
-
-		$this->finished();
-		return $this->result->output();
 	}
 
 	public function final()
 	{
 		$this->result->final();
-		$this->finished();
-		return $this->result->output();
 	}
 
 	public function next()
 	{
 		$this->level++;
 		$this->result->next($this->level);
-		$this->finished();
-		return $this->result->output();
 	}
 
 	public function prepare($start, $limit)
 	{
 		$this->result = new ProcessResult($start, $limit, $this->getTotal());
+	}
+
+	public function result()
+	{
+		$this->finished();
+		return $this->result->output();
 	}
 
 	protected function try_execute()

@@ -60,8 +60,6 @@ class ProcessFileSample extends ProcessFile
 	public function final()
 	{
 		$this->result->final('We finished the work!');
-		$this->finished();
-		return $this->result->output();
 	}
 
 	public function next()
@@ -70,11 +68,11 @@ class ProcessFileSample extends ProcessFile
 		switch($current)
 		{
 			case 'step1':
-				$this->result->setMsg('Start next step 2');
+				$this->result->setMsg('Start step 2');
 				$this->result->limit = 25;
 				break;
 			case 'step2':
-				$this->result->setMsg('Start next step 3');
+				$this->result->setMsg('Start step 3');
 				$this->result->limit = 5;
 				break;
 			case 'step3':
@@ -84,7 +82,5 @@ class ProcessFileSample extends ProcessFile
 
 		$this->level++;
 		$this->result->next($this->level);
-		$this->finished();
-		return $this->result->output();
 	}
 }

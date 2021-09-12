@@ -38,4 +38,7 @@ abstract class ProcessAbstract
 
 	// finished all
 	abstract function final();
+
+	// output a result
+	abstract function result();
 }
