@@ -14,9 +14,11 @@ class ProcessResult
 {
 	public $start;  
 	public $limit;  
+
 	protected $msg; 
 	protected $length;  
 	protected $output;  
+	protected $percentage;  
 
 	public function __construct($start, $limit, $length)
 	{
@@ -50,11 +52,26 @@ class ProcessResult
 		];
 	}
 
+	public function getNext()
+	{
+		return $this->start + $this->limit;
+	}
+
+	public function getPercentage()
+	{
+		if( null === $this->percentage )
+		{
+			$next = $this->getNext();
+			$this->percentage = $next > $this->length ? 100 : ($next / $this->length) * 100;
+			$this->percentage = (int)$this->percentage;
+		}
+
+		return $this->percentage;
+	}
+
 	public function success($data=null, $level, $msg='')
 	{ 
-		$next = $this->start + $this->limit;
-		$percentage = $next > $this->length ? 100 : ($next / $this->length) * 100;
-		$percentage = (int)$percentage;
+		$percentage = (int)$this->getPercentage();
 
 		if( empty($msg) )
 		{
@@ -94,6 +111,7 @@ class ProcessResult
 			'msg' => $msg,
 			'level' => $level,
 			'start' => 0,
+			'limit' => $this->limit,
 			'data'=> true,
 			'percentage'=> 0
 		];
