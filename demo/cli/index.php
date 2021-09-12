@@ -3,17 +3,19 @@
 require_once '../include.php'; 
 
 // Declare
+$state = SequencyProcess\ProcessFileCli::getState( DEMO_PATH.'cli/state.log' );
+
 $level = isset($state['level']) ? (int)$state['level'] : 0;
+$start = isset($state['start']) ? (int)$state['start'] : 0;
+$limit = isset($state['limit']) ? (int)$state['limit'] : 5; 
+
 $process = new SequencyProcess\ProcessFileCli($level);
-$process->setStatePath( DEMO_PATH.'cli/state.log' );
+//$process->loadData( DEMO_PATH.'cli/array.php' ); can load data from a file
 $process->setArray( demo::sampleArray() );
 
 $sequence = new SequencyProcess\Sequence($process);
 
-// Process each segment
-$state = $process->loadState();
-$start = isset($state['start']) ? (int)$state['start'] : 0;
-$limit = isset($state['limit']) ? (int)$state['limit'] : 5; 
+// Process each segment 
 $output = $sequence->run($start, $limit);
 
 // Print result to terminal

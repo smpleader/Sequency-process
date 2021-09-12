@@ -12,44 +12,42 @@ namespace SequencyProcess;
 
 class ProcessFileCli extends ProcessFile
 {
-	protected $statePath;
-
-	public function setStatePath(string $path)
+	private static $statePath;
+	public static function getState(string $path)
 	{
-		$this->statePath = $path;
-		if(!file_exists($this->statePath))
+		if(file_exists($path))
 		{
-			$try = fopen($this->statePath, 'a+');
+			$try = file_get_contents($path);
+
 			if(false === $try)
 			{
-				$this->setStatePath( DEMO_PATH. 'state.log' );
+				die('Can not read '. $path);
 			}
-		}
-	}
-
-    public function loadState()
-	{
-		$try = file_get_contents($this->statePath);
-
-		if(false === $try)
-		{
-			$this->error = 'Invalid file '. $path;
-			$state = ['start'=>0];
-		}
-		else
-		{
+			
 			$state = (array) json_decode($try);
 		}
+		else 
+		{
+			$state = ['start'=>0];
+		}
+
+		static::$statePath = $path;
 
 		return $state;
+	}
+
+	public static function setState( $state )
+	{
+		file_put_contents(static::$statePath, json_encode($state));
 	}
 
 	public function finished()
 	{
 		if ( 'cli' == php_sapi_name())
 		{
-			$res = $this->result->output();
-			file_put_contents($this->statePath, json_encode($res));
+			static::setState(
+				$this->result->output()
+			);
 		}
 	}
 }
