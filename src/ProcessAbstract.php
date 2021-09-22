@@ -15,7 +15,7 @@ abstract class ProcessAbstract
 	protected $level;
 	protected $error;
 
-	function __construct($level = 0)
+	function __construct($level = 0, $extra = [])
 	{
 		$this->level = $level;
 	}

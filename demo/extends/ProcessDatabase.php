@@ -16,9 +16,14 @@ class ProcessDatabase extends ProcessArray
 	protected $result;
 	protected $data; 
 
-    public function setDB(object $db)
+	function __construct($level = 0, $extra = [])
 	{
-		$this->db = $db;
+		if(isset($extra['db']))
+		{
+			$this->db = $db;
+		}
+
+		$this->level = $level;
 	}
 
     public function getTotal()
